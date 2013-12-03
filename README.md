@@ -6,6 +6,8 @@ JavaScript and LESS helpers for rendering high-resolution image variants. retina
 
 When your users load a page, retina.js checks each image on the page to see if there is a high-resolution version of that image on your server. If a high-resolution variant exists, the script will swap in that image in-place.
 
+You can also specify a custom image tag selector if you want to limit the images for which the script performs this check. This is particularly handy in combination with the `data-at2x` attribute described below.
+
 The script assumes you use Apple's prescribed high-resolution modifier (@2x) to denote high-resolution image variants on your server. It is also possible to override this by manually specifying the URL for the @2x images using `data-at2x` attributes.
 
 For example, if you have an image on your page that looks like this:
@@ -37,7 +39,19 @@ The JavaScript helper script automatically replaces images on your page with hig
 <script type="text/javascript" src="/scripts/retina.js"></script>
 ```
 
-### LESS
+If you want to specify a custom image tag selector then add the following below the script tag:
+
+```html
+<script type="text/javascript">
+    window.Retina.configure({
+        img_tag_selector : 'img[data-at2x]'
+    });
+</script>
+```
+
+This particular selector `img[data-at2x]` will make sure that retina.js only retrieves retina images for those image tags that have the `data-at2x` attribute set.
+
+###LESS
 
 The LESS CSS mixin is a helper for applying high-resolution background images in your stylesheet. You provide it with an image path and the dimensions of the original-resolution image. The mixin creates a media query specifically for Retina displays, changes the background image for the selector elements to use the high-resolution (@2x) variant and applies a background-size of the original image in order to maintain proper dimensions. To use it, download the mixin, import or include it in your LESS stylesheet, and apply it to elements of your choice.
 
