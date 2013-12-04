@@ -1,3 +1,5 @@
+// https://github.com/analog-analytics/retinajs/blob/master/src/retina.js
+// includes a patch to only load images with the data-at2x attribute
 (function() {
 
   var root = (typeof exports == 'undefined' ? window : exports);
